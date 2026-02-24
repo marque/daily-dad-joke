@@ -20,7 +20,10 @@
     <main>
       <div class="card">
         <h1>Daily Dad Joke</h1>
-        <img id="img" alt="Daily dad joke image" style="max-width:100%;border-radius:12px;margin:14px 0;display:block" />
+        <picture>
+          <source id="imgPng" type="image/png" />
+          <img id="img" alt="Daily dad joke image" style="max-width:100%;border-radius:12px;margin:14px 0;display:block" />
+        </picture>
         <div id="joke">Loading…</div>
         <div id="date"></div>
         <footer>
@@ -37,6 +40,7 @@
           const res = await fetch(DATA_URL, { cache: 'no-store' });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
+          document.getElementById("imgPng").srcset = "image-of-the-day.png?v=" + encodeURIComponent(data.date);
           document.getElementById("img").src = IMG_URL + "?v=" + encodeURIComponent(data.date);
           document.getElementById('joke').textContent = data.joke;
           document.getElementById('date').textContent = data.date;

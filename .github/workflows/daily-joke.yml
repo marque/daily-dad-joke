@@ -20,9 +20,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Generate joke JSON
+      - name: Generate joke JSON + SVG
         run: |
           npm run generate
+
+      - name: Generate image (Vertex Imagen)
+        env:
+          VERTEX_LOCATION: us-central1
+          IMAGEN_MODEL: imagen-3.0-fast-generate-001
+        run: |
+          node scripts/generate-image.mjs
 
       # Auth to GCP via Workload Identity Federation
       - id: auth
@@ -38,6 +45,7 @@ jobs:
       - name: Upload image SVG to GCS images bucket
         run: |
           gcloud storage cp public/image-of-the-day.svg gs://${{ secrets.GCS_IMAGES_BUCKET }}/image-of-the-day.svg
+          gcloud storage cp public/image-of-the-day.png gs://${{ secrets.GCS_IMAGES_BUCKET }}/image-of-the-day.png
 
       - name: Commit generated JSON to repo (so GitHub Pages can serve it)
         run: |
@@ -45,5 +53,6 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add public/joke-of-the-day.json
           git add public/image-of-the-day.svg
+          git add public/image-of-the-day.png
           git commit -m "chore: update joke-of-the-day" || echo "No changes"
           git push
