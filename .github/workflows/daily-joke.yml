@@ -35,10 +35,15 @@ jobs:
         run: |
           gcloud storage cp public/joke-of-the-day.json gs://${{ secrets.GCS_DATA_BUCKET }}/joke-of-the-day.json
 
+      - name: Upload image SVG to GCS images bucket
+        run: |
+          gcloud storage cp public/image-of-the-day.svg gs://${{ secrets.GCS_IMAGES_BUCKET }}/image-of-the-day.svg
+
       - name: Commit generated JSON to repo (so GitHub Pages can serve it)
         run: |
           git config user.name "daily-dad-joke-bot"
           git config user.email "actions@users.noreply.github.com"
           git add public/joke-of-the-day.json
+          git add public/image-of-the-day.svg
           git commit -m "chore: update joke-of-the-day" || echo "No changes"
           git push
