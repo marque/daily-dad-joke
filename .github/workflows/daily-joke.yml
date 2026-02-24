@@ -20,6 +20,13 @@ jobs:
         with:
           node-version: 20
 
+      # Auth to GCP via Workload Identity Federation (needed for Imagen + uploads)
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - name: Generate joke JSON + SVG
         run: |
           npm run generate
@@ -31,13 +38,6 @@ jobs:
           IMAGEN_MODEL: imagen-3.0-fast-generate-001
         run: |
           node scripts/generate-image.mjs
-
-      # Auth to GCP via Workload Identity Federation
-      - id: auth
-        uses: google-github-actions/auth@v2
-        with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Upload joke JSON to GCS data bucket
         run: |
