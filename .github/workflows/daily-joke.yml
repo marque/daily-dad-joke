@@ -1,0 +1,44 @@
+name: Daily joke
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # 07:05 America/Toronto ≈ 12:05 UTC (adjust seasonally if you care)
+    - cron: '5 12 * * *'
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate joke JSON
+        run: |
+          npm run generate
+
+      # Auth to GCP via Workload Identity Federation
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Upload joke JSON to GCS data bucket
+        run: |
+          gcloud storage cp public/joke-of-the-day.json gs://${{ secrets.GCS_DATA_BUCKET }}/joke-of-the-day.json
+
+      - name: Commit generated JSON to repo (so GitHub Pages can serve it)
+        run: |
+          git config user.name "daily-dad-joke-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/joke-of-the-day.json
+          git commit -m "chore: update joke-of-the-day" || echo "No changes"
+          git push

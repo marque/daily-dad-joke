@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Dad Joke</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 0; }
+      main { max-width: 720px; margin: 64px auto; padding: 0 16px; }
+      .card { border: 1px solid rgba(127,127,127,.35); border-radius: 14px; padding: 20px; }
+      h1 { margin: 0 0 12px; }
+      #joke { font-size: 1.35rem; line-height: 1.45; }
+      #date { opacity: .75; margin-top: 12px; }
+      footer { opacity: .7; margin-top: 18px; font-size: .95rem; }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <h1>Daily Dad Joke</h1>
+        <div id="joke">Loading…</div>
+        <div id="date"></div>
+        <footer>
+          <span id="source"></span>
+        </footer>
+      </div>
+    </main>
+
+    <script>
+      const DATA_URL = "joke-of-the-day.json";
+      (async () => {
+        try {
+          const res = await fetch(DATA_URL, { cache: 'no-store' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          document.getElementById('joke').textContent = data.joke;
+          document.getElementById('date').textContent = data.date;
+          document.getElementById('source').textContent = data.source ? `Source: ${data.source}` : '';
+        } catch (e) {
+          document.getElementById('joke').textContent = "Couldn't load today's joke.";
+          document.getElementById('date').textContent = String(e);
+        }
+      })();
+    </script>
+  </body>
+</html>
