@@ -26,6 +26,7 @@ jobs:
 
       - name: Generate image (Vertex Imagen)
         env:
+          GCP_PROJECT: daily-dad-joke-472514
           VERTEX_LOCATION: us-central1
           IMAGEN_MODEL: imagen-3.0-fast-generate-001
         run: |
