@@ -4,6 +4,13 @@ const target = Number(process.env.TARGET || 500);
 const perPage = 30;
 let page = 1;
 
+function normalizeJoke(s) {
+  return String(s || '')
+    .replace(/\r?\n+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 const jokes = [];
 const seen = new Set();
 
@@ -21,7 +28,7 @@ while (jokes.length < target) {
   if (!results.length) break;
 
   for (const r of results) {
-    const j = String(r?.joke || '').trim();
+    const j = normalizeJoke(r?.joke);
     if (!j) continue;
     if (seen.has(j)) continue;
     seen.add(j);
