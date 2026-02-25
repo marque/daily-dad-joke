@@ -28,28 +28,42 @@ const body = {
   instances: [{ prompt }],
   parameters: {
     sampleCount: 1,
-    aspectRatio: '16:9'
+    aspectRatio: '1:1'
   }
 };
 
-const res = await fetch(endpoint, {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(body)
-});
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-if (!res.ok) {
-  const text = await res.text();
-  throw new Error(`Imagen request failed: HTTP ${res.status} ${res.statusText}\n${text}`);
+let lastErr;
+for (let attempt = 1; attempt <= 6; attempt++) {
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    lastErr = new Error(`Imagen request failed: HTTP ${res.status} ${res.statusText}\n${text}`);
+  } else {
+    const json = await res.json();
+    const b64 = json?.predictions?.[0]?.bytesBase64Encoded;
+    if (b64) {
+      const buf = Buffer.from(b64, 'base64');
+      writeFileSync('public/image-of-the-day.png', buf);
+      console.log(`Wrote public/image-of-the-day.png (${buf.length} bytes) using model ${model} @ ${location}`);
+      process.exit(0);
+    }
+    lastErr = new Error(`Unexpected response (no bytesBase64Encoded): ${JSON.stringify(json).slice(0, 1000)}`);
+  }
+
+  // backoff: 1s, 2s, 4s, 8s...
+  const wait = Math.min(16000, 1000 * (2 ** (attempt - 1)));
+  console.warn(`[imagen] attempt ${attempt}/6 failed; retrying in ${wait}ms`);
+  await sleep(wait);
 }
 
-const json = await res.json();
-const b64 = json?.predictions?.[0]?.bytesBase64Encoded;
-if (!b64) throw new Error(`Unexpected response (no bytesBase64Encoded): ${JSON.stringify(json).slice(0, 1000)}`);
-
-const buf = Buffer.from(b64, 'base64');
-writeFileSync('public/image-of-the-day.png', buf);
-console.log(`Wrote public/image-of-the-day.png (${buf.length} bytes) using model ${model} @ ${location}`);
+throw lastErr || new Error('Imagen request failed');
