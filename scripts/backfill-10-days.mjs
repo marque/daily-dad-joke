@@ -40,12 +40,20 @@ for (let i = 0; i < days; i++) {
   console.log(`\n=== ${date} ===`);
 
   run('npm run generate', { JOKE_DATE: date });
-  run('node scripts/generate-image.mjs', {
-    JOKE_DATE: date,
-    GCP_PROJECT: project,
-    VERTEX_LOCATION: vertexLocation,
-    IMAGEN_MODEL: imagenModel,
-  });
+
+  let imageOk = true;
+  try {
+    run('node scripts/generate-image.mjs', {
+      JOKE_DATE: date,
+      GCP_PROJECT: project,
+      VERTEX_LOCATION: vertexLocation,
+      IMAGEN_MODEL: imagenModel,
+    });
+  } catch (e) {
+    imageOk = false;
+    console.warn(`[backfill] image generation failed for ${date}; uploading JSON only`);
+    console.warn(String(e).slice(0, 800));
+  }
 
   const json = JSON.parse(readFileSync('public/joke-of-the-day.json', 'utf8'));
   if (json.date !== date) throw new Error(`Date mismatch: expected ${date}, got ${json.date}`);
@@ -54,9 +62,11 @@ for (let i = 0; i < days; i++) {
   run(
     `gcloud storage cp public/joke-of-the-day.json gs://${dataBucket}/archive/${date}.json`
   );
-  run(
-    `gcloud storage cp public/image-of-the-day.png gs://${imagesBucket}/archive/${date}.png`
-  );
+  if (imageOk) {
+    run(
+      `gcloud storage cp public/image-of-the-day.png gs://${imagesBucket}/archive/${date}.png`
+    );
+  }
 }
 
 console.log('\nBackfill complete.');
