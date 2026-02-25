@@ -39,6 +39,13 @@ jobs:
         run: |
           node scripts/generate-image.mjs
 
+      - name: Save dated archive copy for Pages
+        run: |
+          mkdir -p public/archive
+          DATE=$(node -e "console.log(JSON.parse(require('fs').readFileSync('public/joke-of-the-day.json','utf8')).date)")
+          cp public/joke-of-the-day.json public/archive/${DATE}.json
+          cp public/image-of-the-day.png public/archive/${DATE}.png
+
       - name: Upload joke JSON to GCS data bucket
         run: |
           gcloud storage cp public/joke-of-the-day.json gs://${{ secrets.GCS_DATA_BUCKET }}/joke-of-the-day.json
@@ -55,5 +62,6 @@ jobs:
           git add public/joke-of-the-day.json
           git add public/image-of-the-day.svg
           git add public/image-of-the-day.png
+          git add public/archive/
           git commit -m "chore: update joke-of-the-day" || echo "No changes"
           git push

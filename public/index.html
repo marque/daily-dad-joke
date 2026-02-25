@@ -191,14 +191,57 @@
         return data;
       }
 
+      function addDays(dateStr, delta) {
+        const [y, m, d] = dateStr.split('-').map(Number);
+        const dt = new Date(Date.UTC(y, m - 1, d, 12, 0, 0));
+        dt.setUTCDate(dt.getUTCDate() + delta);
+        return dt.toISOString().slice(0, 10);
+      }
+
+      async function loadByDate(date) {
+        // Loads from repo-served archive so it works on GitHub Pages
+        const res = await fetch(`archive/${date}.json`, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`No archive for ${date} (HTTP ${res.status})`);
+        const data = await res.json();
+
+        // Square display: just use the PNG
+        document.getElementById("imgPng").srcset = `archive/${date}.png?v=${encodeURIComponent(date)}`;
+        document.getElementById("img").src = `archive/${date}.png?v=${encodeURIComponent(date)}`;
+
+        document.getElementById('joke').textContent = data.joke;
+        document.getElementById('date').textContent = '📅 ' + formatDateEt(data.date);
+        return data;
+      }
+
       (async () => {
         try {
-          const data = await loadToday();
+          let current = (await loadToday()).date;
 
-          // Buttons are cosmetic for now; wire later when archive exists
-          document.getElementById('btnToday').onclick = () => location.reload();
-          document.getElementById('btnPrev').onclick = () => alert('Archive navigation is next (we already backfilled 10 days in GCS).');
-          document.getElementById('btnLucky').onclick = () => alert('Lucky day is next (will pick a random archive date).');
+          document.getElementById('btnToday').onclick = async () => {
+            current = (await loadToday()).date;
+          };
+
+          document.getElementById('btnPrev').onclick = async () => {
+            try {
+              const prev = addDays(current, -1);
+              current = (await loadByDate(prev)).date;
+            } catch (e) {
+              alert(String(e));
+            }
+          };
+
+          document.getElementById('btnLucky').onclick = async () => {
+            // Try random dates from the last 30 days until we find one that exists.
+            for (let tries = 0; tries < 12; tries++) {
+              const offset = -1 * (1 + Math.floor(Math.random() * 30));
+              const candidate = addDays(current, offset);
+              try {
+                current = (await loadByDate(candidate)).date;
+                return;
+              } catch {}
+            }
+            alert('No archived days found yet.');
+          };
         } catch (e) {
           document.getElementById('joke').textContent = "Couldn't load today's joke.";
           document.getElementById('date').textContent = String(e);
