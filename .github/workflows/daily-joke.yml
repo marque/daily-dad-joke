@@ -3,8 +3,9 @@ name: Daily joke
 on:
   workflow_dispatch: {}
   schedule:
-    # 07:05 America/Toronto ≈ 12:05 UTC (adjust seasonally if you care)
-    - cron: '5 12 * * *'
+    # Run around 6:05 AM Toronto time.
+    # Note: GitHub cron is UTC; this will be 6:05 AM in winter (EST), 7:05 AM in summer (EDT).
+    - cron: '5 11 * * *'
 
 permissions:
   contents: write
