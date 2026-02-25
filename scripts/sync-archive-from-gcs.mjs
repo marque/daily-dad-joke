@@ -23,7 +23,8 @@ function run(cmd) {
 
 const start = new Date();
 start.setUTCHours(0,0,0,0);
-// include today and previous days
+// Start from yesterday UTC to align with backfill range
+start.setUTCDate(start.getUTCDate() - 1);
 
 for (let i = 0; i < days; i++) {
   const d = new Date(start);
