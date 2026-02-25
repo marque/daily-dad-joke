@@ -81,10 +81,10 @@ const jokes = readFileSync(new URL('../jokes.txt', import.meta.url), 'utf8')
 
 if (!jokes.length) throw new Error('No jokes found in jokes.txt');
 
-// Stable rotation by date string
-let hash = 0;
-for (const ch of date) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
-const idx = hash % jokes.length;
+// Stable, non-repeating rotation for sequential days (for up to jokes.length days)
+const [yy, mm, dd] = date.split("-").map(Number);
+const dayNumber = Math.floor(Date.UTC(yy, mm - 1, dd) / 86400000);
+const idx = ((dayNumber % jokes.length) + jokes.length) % jokes.length;
 
 const payload = {
   date,
