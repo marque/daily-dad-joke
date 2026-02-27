@@ -14,11 +14,11 @@
   <rect x="40" y="40" width="1120" height="550" rx="28" fill="#ffffff" filter="url(#shadow)" />
 
   <text x="80" y="140" font-size="44" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">Daily Dad Joke</text>
-  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-02-26</text>
+  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-02-27</text>
 
-  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">How come the stadium got hot after</text>
-<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">the game? Because all of the fans</text>
-<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">left.</text>
+  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">&quot;Why do seagulls fly over the</text>
+<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">ocean?&quot; &quot;Because if they flew over</text>
+<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">the bay, we&apos;d call them bagels.&quot;</text>
 
   <text x="80" y="560" font-size="22" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#64748b">marque.github.io/daily-dad-joke</text>
 </svg>
