@@ -14,11 +14,11 @@
   <rect x="40" y="40" width="1120" height="550" rx="28" fill="#ffffff" filter="url(#shadow)" />
 
   <text x="80" y="140" font-size="44" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">Daily Dad Joke</text>
-  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-03-08</text>
+  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-03-09</text>
 
-  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">What is a centipedes&apos;s favorite</text>
-<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">Beatle song? I want to hold your</text>
-<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">hand, hand, hand, hand...</text>
+  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">My first time using an elevator</text>
+<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">was an uplifting experience. The</text>
+<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">second time let me down.</text>
 
   <text x="80" y="560" font-size="22" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#64748b">marque.github.io/daily-dad-joke</text>
 </svg>
