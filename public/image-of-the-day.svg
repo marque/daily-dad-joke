@@ -14,10 +14,12 @@
   <rect x="40" y="40" width="1120" height="550" rx="28" fill="#ffffff" filter="url(#shadow)" />
 
   <text x="80" y="140" font-size="44" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">Daily Dad Joke</text>
-  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-05-13</text>
+  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-05-14</text>
 
-  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">I made a belt out of watches</text>
-<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">once... It was a waist of time.</text>
+  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">Why did Mozart kill all his</text>
+<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">chickens? Because when he asked</text>
+<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">them who the best composer was,</text>
+<text x="80" y="432" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">they&apos;d all say &quot;Bach bach bach!&quot;</text>
 
   <text x="80" y="560" font-size="22" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#64748b">marque.github.io/daily-dad-joke</text>
 </svg>
