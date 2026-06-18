@@ -14,12 +14,11 @@
   <rect x="40" y="40" width="1120" height="550" rx="28" fill="#ffffff" filter="url(#shadow)" />
 
   <text x="80" y="140" font-size="44" font-weight="700" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">Daily Dad Joke</text>
-  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-06-17</text>
+  <text x="80" y="190" font-size="26" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#334155">2026-06-18</text>
 
-  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">I can&apos;t take my dog to the pond</text>
-<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">anymore because the ducks keep</text>
-<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">attacking him. That&apos;s what I get</text>
-<text x="80" y="432" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">for buying a pure bread dog.</text>
+  <text x="80" y="240" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">My boss told me to attach two</text>
+<text x="80" y="304" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">pieces of wood together... I</text>
+<text x="80" y="368" font-size="56" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#0B1220">totally nailed it!</text>
 
   <text x="80" y="560" font-size="22" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#64748b">marque.github.io/daily-dad-joke</text>
 </svg>
